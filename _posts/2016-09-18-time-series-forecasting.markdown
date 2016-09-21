@@ -200,19 +200,16 @@ y_test_pred<-knn.reg(X_train,X_test,y_train,k=k_final)[[4]]
 
 
 
-### Final results
+### Final results & summary
 
 
 Totally was created around 2k models, which wont’t fit to any chart unless you clusterize them:), so only main algorithms are presented below:
 
 ![final results](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/final%20results.png "Main models, MSE")
 
-
-
-### Summary 
-
-
 As a result of testing, weighted penalized regression was chosen as base algorithm with `α=0` (ridge regression)  and `λ=0.005`. Observation period was set as 2 years. 
+
+![forecast](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/forecast%20results.png "glmnet forecast")
 
 The proposed algorithm allows to build time series forecasting of multiple interdependent time series. It automatically reveals any kind of seasonality, deals with missing values/outliers and removes overfitting/multicollinearity via penalization. It’s scalable for new features (both lagged and calendar), period of forecasting and number of interdependent time series.
 
