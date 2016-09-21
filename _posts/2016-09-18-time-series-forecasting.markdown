@@ -170,7 +170,7 @@ y_train_pred<-predict(fit_xgboost,X_train)
 y_test_pred<-predict(fit_xgboost,X_test)
 ```
 
-> Advise - take care of proper validation. Precise model can be overfitted even If it was developed and tested on different populations (that's why I do not like Kaggle much:)). You need to have at least 5 out-of-time (OOT) samples from different periods. Of course, for each iteration you need to take OOT sample as of most recent period and develop a model based on previous period. [!sampling](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/sampling.jpg "Sampling example")
+> Advise - take care of proper validation. Precise model can be overfitted even If it was developed and tested on different populations (that's why I do not like Kaggle much:)). You need to have at least 5 out-of-time (OOT) samples from different periods. Of course, for each iteration you need to take OOT sample as of most recent period and develop a model based on previous period. ![sampling](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/sampling.jpg "Sampling example")
 
 
 
