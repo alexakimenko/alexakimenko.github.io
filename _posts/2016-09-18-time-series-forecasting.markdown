@@ -6,7 +6,9 @@ summary:    How to approach forecasting of multiple interdependent time series a
 categories: time_series
 ---
 
+
 ### First glance on the data
+
 
 Input data for forecasting is daily delinquency bucket volumes since 2013 - all in all 14 time series which are correlated with the neighbor with some lag. Usually this lag is around 30 days, but not always.
 
@@ -23,6 +25,7 @@ The task is to develop an algorithm which will predict `Y` for the next month fo
 
 
 ### Data preparation and new features
+
 
 First of all, you need to normalize data and remove outliers. 
 
@@ -61,6 +64,7 @@ X_lagged_create<-function(bucket_name,actual_date,Y){
 
 ### Forecasting algorithm
 
+
 First my thought was not to overcomplicate the task and to decompose time series by trend and seasonality. There is a great `forecast` package, developed by Rob Hyndman, which can do it for you. `TBATS` is the one algorithm from this package which can decompose dual seasonality. But the problem is that you need to somehow approach missing values without loosing accuracy and include lagged correlated time series as regressors. That’s why I transformed the task to regression task, which is well known and was solved million of times.
 
 Following algorithms were chosen as challengers:
@@ -83,6 +87,7 @@ The algorithm starts with data preparation, then feature engineering and modelin
 
 
 ### Modeling
+
 
 #### Accuracy measure
 
@@ -195,13 +200,15 @@ y_test_pred<-knn.reg(X_train,X_test,y_train,k=k_final)[[4]]
 
 ### Final results
 
-Totally was created around 2k models, which wont’t fit to any chart unless you clusterize them:), so only main algorithms were presented below:
+
+Totally was created around 2k models, which wont’t fit to any chart unless you clusterize them:), so only main algorithms are presented below:
 
 ![final results](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/final%20results.png "Main models, MSE")
 
 
 
 ### Summary 
+
 
 As a result of testing, weighted penalized regression was chosen as base algorithm with `α=0` (ridge regression)  and `λ=0.005`. Observation period was set as 2 years. 
 
