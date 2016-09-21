@@ -18,6 +18,7 @@ Each time series has its unique trend, seasonality and variance. As you can see 
 
 The task is to develop an algorithm which will predict Y for the next month for each time series with Mean Absolute Percentage Error (MAPE) < 3%.
 
+
 ### Data preparation and new features
 
 First of all you need to normalize data and remove outliers. 
@@ -53,22 +54,29 @@ X_lagged_create<-function(bucket_name,actual_date,Y){
 ```
 > Advise - do not hesitate to use hundreds or even thousand of features. If you are afraid that your algorithm will slow down - use `data.table` package. On the example above you can see `dcast` function from `data.table` package instead and `cast` from `reshape`. This reduced time spent on this operation 4 times - from 4 seconds to 1 second.
 
+
 ### Forecasting algorithm
 
 First my thought was not to overcomplicate the task and to decompose time series by trend and seasonality. There is a great `forecast` package, developed by Rob Hyndman, which can do it for you. `TBATS` is the one algorithm from this package which can decompose dual seasonality. But the problem is that you need to somehow approach missing values without loosing accuracy and include lagged correlated time series as regressors. That’s why I transformed the task to regression task, which is well known and was solved million of times.
 
 Following algorithms were chosen as challengers:
+
 1. Ensembles (Random Forest, Gradient Boosted Models - GBM and XGBoost);
-2. Regressions (Linear, Stepwise, Ridge and Lasso)
-3. Distance based (k-Nearest Neighbor - kNN)
-4. Dimension reduction (Principal Component Analysis - PCA)
+
+2. Regressions (Linear, Stepwise, Ridge and Lasso);
+
+3. Distance based (k-Nearest Neighbor - kNN);
+
+4. Dimension reduction (Principal Component Analysis - PCA).
 
 Whole forecasting algorithm is presented below:
 
 
 The algorithm starts with data preparation, then feature engineering and modeling. The last part is forecasting itself. In order to build a forecast, each new period of forecasting must have previous forecasting results as input, that why additional inner loop by number of periods ahead was added to forecasting algorithm. 
 
+
 ### Modeling
+
 #### Accuracy measure
 
 First of all, before modeling time series,you need to choose accuracy measure which will define best model. One of the most popular measure is Mean Absolute Percentage Error (MAPE).  MAPE is often preferred because apparently managers understand percentages better than squared errors. However it falls then you need to compare time series which are close to zero - it just blows up due denominator. This is our case as we scaled time series around 0. Thus Mean Squared Error (MSE) was chosen as a measure of accuracy:
@@ -117,6 +125,7 @@ y_test_pred<-predict(fit_lm_clean,X_test)
 ```
 
 #### 3. Penalized regression
+
 Penalization decreased error by 11% comparing with regular linear model. The algorithm is extremely fast, for same task on same PC it requires just 3.3 seconds (not even minutes). However you need to keep in mind that it works perfectly on normalized data and requires `lambda` (regularization parameter) and `alpha` (which defines if it’s ridge or lasso penalty) optimization:
 ```r
 library(glmnet)	 
@@ -151,9 +160,11 @@ y_test_pred<-predict(fit_xgboost,X_test)
 
 
 ### Final results
+
 Totally was created around 2k models, which wont’t fit to any chart unless you clusterize them:), so only main algorithms were presented below
 Box plot by buckets (y - algorythm, x - accuracy)
 
 ### Summary 
+
 As a result of testing, weighted penalized regression was chosen as base algorithm with `α=0` (ridge regression)  and `λ=0.005`. Observation period was set as 2 years. 
 The proposed algorithm allows to build time series forecasting based on interdependent time series. It automatically reveals any kind of seasonality, deals with missing values/outliers and removes overfitting/multicollinearity via penalization. It’s scalable for new features (both lagged and calendar), period of forecasting and number of interdependent time series.
