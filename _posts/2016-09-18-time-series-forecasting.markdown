@@ -66,13 +66,13 @@ First my thought was not to overcomplicate the task and to decompose time series
 
 Following algorithms were chosen as challengers:
 
-0. Dimension reduction (Principal Component Analysis - PCA). 
+0.Dimension reduction (Principal Component Analysis - PCA). 
 
-1. Ensembles (Random Forest, Gradient Boosted Models - GBM and XGBoost);
+1.Ensembles (Random Forest, Gradient Boosted Models - GBM and XGBoost);
 
-2. Regressions (Linear, Stepwise, Ridge and Lasso);
+2.Regressions (Linear, Stepwise, Ridge and Lasso);
 
-3. Distance based (k-Nearest Neighbor - kNN);
+3.Distance based (k-Nearest Neighbor - kNN);
 
 
 Whole forecasting algorithm is presented below:
@@ -132,7 +132,8 @@ The model showed pretty good results, it is prone to overfitting. However do not
 #### 2. Stepwise regression
 
 Stepwise regression demonstrated results which were on average 1-2% better then regular linear model. But the problem (and this is really big problem) is that it really time consuming! For 14 time series and 90-120 variables for each time series it requires total 22 minutes (!) on Intel Core i5 4 GB RAM to solve the model. Below is the example of backward stepwise regression:
-```r
+
+```R
 fit_lm <- lm(y_train~.,X_train,weights = weights_lm)
 fit_lm_clean<-step(fit_lm,direction="backward",test="F",trace=F,weights = weights_lm)
 y_train_pred<-predict(fit_lm_clean,X_train)
@@ -195,8 +196,9 @@ y_test_pred<-knn.reg(X_train,X_test,y_train,k=k_final)[[4]]
 
 ### Final results
 
-Totally was created around 2k models, which wont’t fit to any chart unless you clusterize them:), so only main algorithms were presented below
-Box plot by buckets (y - algorythm, x - accuracy)
+Totally was created around 2k models, which wont’t fit to any chart unless you clusterize them:), so only main algorithms were presented below:
+
+![final results](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/final%20results.png "Main models, MSE")
 
 
 
@@ -207,6 +209,7 @@ As a result of testing, weighted penalized regression was chosen as base algorit
 The proposed algorithm allows to build time series forecasting of multiple interdependent time series. It automatically reveals any kind of seasonality, deals with missing values/outliers and removes overfitting/multicollinearity via penalization. It’s scalable for new features (both lagged and calendar), period of forecasting and number of interdependent time series.
 
 What can be tested further? 
+
 * weights assigned based on nearest month via kNN algorythm
 * RNN/LSTM
 * seasonality and trend decomposition via 'TBADT' package
