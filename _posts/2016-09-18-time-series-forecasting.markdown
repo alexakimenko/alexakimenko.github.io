@@ -16,7 +16,7 @@ Each time series has its unique trend, seasonality and variance. As you can see 
 
 ![variance](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/variance.png "Time series 1 - variance")
 
-The task is to develop an algorithm which will predict Y for the next month for each time series with Mean Absolute Percentage Error (MAPE) < 3%.
+The task is to develop an algorithm which will predict `Y` for the next month for each time series with Mean Absolute Percentage Error (MAPE) < 3%.
 
 
 
@@ -29,11 +29,12 @@ Normalization not only helps to increase the speed of some algorithms (such as g
 Outliers makes noise in data and depending on the context, they either deserve special attention or should be completely ignored. Some models are more sensitive to outliers than others. I’ve removed outliers from train samples based on 3-sigma rule and this helped to increase accuracy on test samples by 3% in average.
 
 Observation period. For regular machine learning task there is a plato in learning capabilities if we increase the amount of input data (I must note that this is not the case for deep learning, however in this task I’ve not used CNN or RNN). Thus minimal observation period was set as 2 years of daily data based on validation results.
+
 > Advise - observation period can be optimized via validation:
 
 (chart, x-observ period, y- error)
 
-From 90 to 120 new features were created for each time series. Most of them are lagged values of correlated buckets, you can see sample code of the function below. Calendar features are the variables which I created from calendar (number of a day, number of a working day, number of a month, number of days since last working day, etc.). You also need to define how you want to treat you calendar features. The best way is to keep them as continuous, but sometimes it make sense to cast them into factors, this can help to model nonlinear relationships in linear models. If you cast variables to factors you need to keep in mind that for some models you need to make on-hot-encoding and convert you X data to numeric matrix (e.g. penalized regression, gradient boosting).
+From 90 to 120 new features were created for each time series. Most of them are lagged values of correlated buckets, you can see sample code of the function below. Calendar features are the variables which I created from calendar (number of a day, number of a working day, number of a month, number of days since last working day, etc.). You also need to define how you want to treat you calendar features. The best way is to keep them as continuous, but sometimes it make sense to cast them into factors, this can help to model nonlinear relationships in linear models. If you cast variables to factors you need to keep in mind that for some models you need to make on-hot-encoding and convert you `X` data to numeric matrix (e.g. penalized regression, gradient boosting).
 
 ```R
 X_lagged_create<-function(bucket_name,actual_date,Y){
