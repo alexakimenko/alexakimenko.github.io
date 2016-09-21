@@ -10,7 +10,9 @@ categories: time series, research
 
 Input data for forecasting is daily delinquency bucket volumes since 2013 - all in all 14 time series which are correlated with the neighbor with some lag. Usually this lag is around 30 days, but not always.
 
-On the right table you can see the example of one of the time series. Rows are days, columns are months. White squares are weekends/holidays or were excluded as outliers (outliers are covered in the next part). You can also see that the time series have dual seasonality (weekly and monthly) and trend.
+On the table bewow you can see the example of one of the time series. Rows are days, columns are months. White squares are weekends/holidays or were excluded as outliers (outliers are covered in the next part). You can also see that the time series have dual seasonality (weekly and monthly) and trend.
+
+![input data](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/input%20data.jpg "input data")
 
 Each time series has its unique trend, seasonality and variance. As you can see on the chart below, the variance can be really high. Below is the example of one of the normalized time series 
 
@@ -168,7 +170,7 @@ y_train_pred<-predict(fit_xgboost,X_train)
 y_test_pred<-predict(fit_xgboost,X_test)
 ```
 
-> Advise - take care of proper validation. Precise model can be overfitted even If it was developed and tested on different populations (that's why I do not like Kaggle much:)). You need to have at least 5 out-of-time (OOT) samples from different periods. Of course, for each iteration you need to take OOT sample as of most recent period and develop a model based on previous period.
+> Advise - take care of proper validation. Precise model can be overfitted even If it was developed and tested on different populations (that's why I do not like Kaggle much:)). You need to have at least 5 out-of-time (OOT) samples from different periods. Of course, for each iteration you need to take OOT sample as of most recent period and develop a model based on previous period. [sampling](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/sampling.jpg "Sampling example")
 
 
 
