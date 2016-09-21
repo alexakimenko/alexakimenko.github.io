@@ -32,9 +32,8 @@ Outliers makes noise in data and depending on the context, they either deserve s
 
 Observation period. For regular machine learning task there is a plato in learning capabilities if we increase the amount of input data (I must note that this is not the case for deep learning, however in this task I’ve not used it). Thus minimal observation period was set as 2 years of daily data based on validation results.
 
-> Advise - observation period can be optimized via validation:
+> **Observation period can be optimized via validation**
 
-(chart, x-observ period, y- error)
 
 From 90 to 120 new features were created for each time series. Most of them are lagged values of correlated buckets, you can see sample code of the function below. Calendar features are the variables which I created from calendar (number of a day, number of a working day, number of a month, number of days since last working day, etc.). You also need to define how you want to treat you calendar features. The best way is to keep them as continuous, but sometimes it make sense to cast them into factors, this can help to model nonlinear relationships in linear models. If you cast variables to factors you need to keep in mind that for some models you need to make on-hot-encoding and convert you `X` data to numeric matrix (e.g. penalized regression, gradient boosting).
 
@@ -56,7 +55,7 @@ X_lagged_create<-function(bucket_name,actual_date,Y){
   return(X_lagged)
 }
 ```
-> Advise - do not hesitate to use hundreds or even thousand of features. If you are afraid that your algorithm will slow down - use `data.table` package. On the example above you can see `dcast` function from `data.table` package instead and `cast` from `reshape`. This reduced time spent on this operation 4 times - from 4 seconds to 1 second.
+> **Do not hesitate to use hundreds or even thousand of features.** If you are afraid that your algorithm will slow down - use `data.table` package. On the example above you can see `dcast` function from `data.table` package instead and `cast` from `reshape`. This reduced time spent on this operation 4 times - from 4 seconds to 1 second.
 
 
 
@@ -173,7 +172,7 @@ y_train_pred<-predict(fit_xgboost,X_train)
 y_test_pred<-predict(fit_xgboost,X_test)
 ```
 
-> Advise - take care of proper validation. Precise model can be overfitted even If it was developed and tested on different populations (that's why I do not like Kaggle much:)). You need to have at least 5 out-of-time (OOT) samples from different periods. Of course, for each iteration you need to take OOT sample as of most recent period and develop a model based on previous period. ![sampling](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/sampling.jpg "Sampling example")
+> **Take care of proper validation.** Precise model can be overfitted even If it was developed and tested on different populations (that's why I do not like Kaggle much:)). You need to have at least 5 out-of-time (OOT) samples from different periods. Of course, for each iteration you need to take OOT sample as of most recent period and develop a model based on previous period. ![sampling](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/sampling.jpg "Sampling example")
 
 #### 5. kNN
 
@@ -212,4 +211,4 @@ What can be tested further?
 
 * weights assigned based on nearest month via kNN algorythm
 * RNN/LSTM
-* seasonality and trend decomposition via 'TBADT' package
+* seasonality and trend decomposition via `TBADT` package
