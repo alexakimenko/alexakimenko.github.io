@@ -122,6 +122,7 @@ X_test_pca<-predict(X_train_pca,get_matrix(X_test))
 ```
 
 Some take aways from modeling:
+
 #### 1. Regular linear model:
 
 ```R
@@ -195,6 +196,7 @@ k_final<-which.min( knn_perf$mse )
 y_train_pred<-knn.reg(X_train,X_train,y_train,k=k_final)[[4]]
 y_test_pred<-knn.reg(X_train,X_test,y_train,k=k_final)[[4]]
 ```
+
 
 
 
