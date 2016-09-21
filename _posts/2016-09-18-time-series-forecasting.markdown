@@ -80,25 +80,30 @@ The algorithm starts with data preparation, then feature engineering and modelin
 #### Accuracy measure
 
 First of all, before modeling time series,you need to choose accuracy measure which will define best model. One of the most popular measure is Mean Absolute Percentage Error (MAPE).  MAPE is often preferred because apparently managers understand percentages better than squared errors. However it falls then you need to compare time series which are close to zero - it just blows up due denominator. This is our case as we scaled time series around 0. Thus Mean Squared Error (MSE) was chosen as a measure of accuracy:
+
 ```R
 mse<-function(y_pred,y_test){
   return(mean((y_pred-y_test)**2))
 }
 ```
+
 > Advise - work on your coding skills. Your code needs to be readable, maintainable, testable and elegant. Copy-pasting is prohibited, functions and clear naming are encouraged. Save results of every experiment even if it fails. This [lecture](https://www.youtube.com/watch?v=_Zqhs1IhGx4) is a good place to start 
 
 #### Weights
 
 The hypothesis behind weights is that some observations are more reliable then the others and can reveal data structure better.  And this make sense, especially for forecasting, when trends can change each 2-3 seasons. The value of weights can be assigned judgmentally to each observation. I used following linear formula, which basically says to treat more recent observations as twice more important then observations 2 years ago:
-```r
+
+```R
 weights_lm<-(1:nrow(X_train))*(1/nrow(X_train))+1
 ```
+
 After you calculated weights you can either assign them via sampling or put them inside algorithm if it supports weighing.  I’ve chosen second option and error rate decreased by roughly 4%.
 
 #### Dimension reduction
 
 The transformation of the data, by centering, rotating and scaling informed by PCA can improve the convergence time and the quality of results. In theory the PCA makes no difference, but in practice it improves rate of training, simplifies the model structure to represent the data, and results in systems that better characterize the "intermediate structure" of the data instead of having to account for multiple scales - it is more accurate. Below is the sample code of PCA:
-```r
+
+```R
 X_train_pca <- prcomp(get_matrix(X_train))
 summary(X_train_pca)
 X_test_pca<-predict(X_train_pca,get_matrix(X_test))
@@ -106,12 +111,14 @@ X_test_pca<-predict(X_train_pca,get_matrix(X_test))
 
 Some take aways from modeling:
 #### 1. Regular linear model:
-```r
+
+```R
 fit_lm <- lm(y_train~.,X_train,weights = weights_lm)
 summary(fit_lm)
 y_train_pred<-predict(fit_lm,X_train)
 y_test_pred<-predict(fit_lm,X_test)
 ```
+
 The model showed pretty good results, it is prone to overfitting. However do not guarantee you best results without proper feature selection while multicollinearity can spoil all the fun from modeling. This is where stepwise and penalized regressions step into.
 
 #### 2. Stepwise regression
@@ -127,7 +134,8 @@ y_test_pred<-predict(fit_lm_clean,X_test)
 #### 3. Penalized regression
 
 Penalization decreased error by 11% comparing with regular linear model. The algorithm is extremely fast, for same task on same PC it requires just 3.3 seconds (not even minutes). However you need to keep in mind that it works perfectly on normalized data and requires `lambda` (regularization parameter) and `alpha` (which defines if it’s ridge or lasso penalty) optimization:
-```r
+
+```R
 library(glmnet)	 
 fit_glmnet <- glmnet(get_matrix(X_train), y_train,weights = weights_lm)
 y_train_pred<-predict(fit_glmnet,get_matrix(X_train),s=0.005)
@@ -137,7 +145,8 @@ y_test_pred<-predict(fit_glmnet,get_matrix(X_test),s=0.005)
 ### 4. Trees
 
 I like building tree models, it can be simple c4.5, CART, more advanced Random Forest or even Gradient Boosted Models (GBM) and XGBoost. Truth be told, boosted trees are my favorite models, which I try to put in every task. However you need to be very mindful and accurate while building tree. Tree algorithms do not provide any statistical significance measures and can be easily overfitted. Sometimes even if you do shallow trees with 2-4 layers, define minimum number of observations  in nodes, optimize learning rate and number of variables via cross validation, the trees just do not work. Below is the example of XGBoost code with cross validation of deepness:
-```r
+
+```R
 library(xgboost)
 xgbMatrix <- xgb.DMatrix(data=X_train, 
                            label = y_train, 
