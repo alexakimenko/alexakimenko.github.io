@@ -3,7 +3,7 @@ layout:     post
 title:      Time series forecasting
 date:       2016-09-18 15:31:19
 summary:    How to approach forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
-categories: time series, research
+categories: time_series
 ---
 
 ### First glance on the data
@@ -211,4 +211,4 @@ What can be tested further?
 
 * weights assigned based on nearest month via kNN algorythm
 * RNN/LSTM
-* seasonality and trend decomposition via `TBADT` package
+* seasonality and trend decomposition via `TBATS` package
