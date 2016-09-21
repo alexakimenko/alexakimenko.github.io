@@ -10,7 +10,7 @@ categories: time_series
 
 Input data for forecasting is daily delinquency bucket volumes since 2013 - all in all 14 time series which are correlated with the neighbor with some lag. Usually this lag is around 30 days, but not always.
 
-On the table bewow you can see the example of one of the time series. Rows are days, columns are months. White squares are weekends/holidays or were excluded as outliers (outliers are covered in the next part). You can also see that the time series have dual seasonality (weekly and monthly) and trend.
+On the table below you can see the example of one of the time series. Rows are days, columns are months. White squares are weekends/holidays or were excluded as outliers (outliers are covered in the next part). You can also see that the time series have dual seasonality (weekly and monthly) and trend.
 
 ![input data](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/input%20data.jpg "input data")
 
