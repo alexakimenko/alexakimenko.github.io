@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Time series forecasting
-date:       2014-06-11 15:31:19
+date:       2016-09-18 15:31:19
 summary:    How to approach forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
 categories: time series, research
 ---
