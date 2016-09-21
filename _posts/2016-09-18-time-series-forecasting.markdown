@@ -24,13 +24,13 @@ The task is to develop an algorithm which will predict `Y` for the next month fo
 
 ### Data preparation and new features
 
-First of all you need to normalize data and remove outliers. 
+First of all, you need to normalize data and remove outliers. 
 
 Normalization not only helps to increase the speed of some algorithms (such as gradient descent) but also is essential for distance based algorithms. For example for this research, normalization (I used the one based on standard deviation) made possible for penalized regression to outperform regular regression. 
 
-Outliers makes noise in data and depending on the context, they either deserve special attention or should be completely ignored. Some models are more sensitive to outliers than others. I’ve removed outliers from train samples based on 3-sigma rule and this helped to increase accuracy on test samples by 3% in average.
+Outliers makes noise in data and depending on the context, they either deserve special attention or should be completely ignored. Some models are more sensitive to outliers than others. I’ve removed outliers from train samples based on both 3-sigma rule and business logic and this helped to increase accuracy on test samples by 3% in average.
 
-Observation period. For regular machine learning task there is a plato in learning capabilities if we increase the amount of input data (I must note that this is not the case for deep learning, however in this task I’ve not used CNN or RNN). Thus minimal observation period was set as 2 years of daily data based on validation results.
+Observation period. For regular machine learning task there is a plato in learning capabilities if we increase the amount of input data (I must note that this is not the case for deep learning, however in this task I’ve not used it). Thus minimal observation period was set as 2 years of daily data based on validation results.
 
 > Advise - observation period can be optimized via validation:
 
@@ -66,16 +66,18 @@ First my thought was not to overcomplicate the task and to decompose time series
 
 Following algorithms were chosen as challengers:
 
+0. Dimension reduction (Principal Component Analysis - PCA). 
+
 1. Ensembles (Random Forest, Gradient Boosted Models - GBM and XGBoost);
 
 2. Regressions (Linear, Stepwise, Ridge and Lasso);
 
 3. Distance based (k-Nearest Neighbor - kNN);
 
-4. Dimension reduction (Principal Component Analysis - PCA).
 
 Whole forecasting algorithm is presented below:
 
+![algorythm](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/algorithm%20(1).jpg "Algorythm")
 
 The algorithm starts with data preparation, then feature engineering and modeling. The last part is forecasting itself. In order to build a forecast, each new period of forecasting must have previous forecasting results as input, that why additional inner loop by number of periods ahead was added to forecasting algorithm. 
 
@@ -129,7 +131,7 @@ The model showed pretty good results, it is prone to overfitting. However do not
 
 #### 2. Stepwise regression
 
-Stepwise regression demonstrated results which were on average 1-2% better then regular linear model. But the problem (and this is really big problem) is that it really time consuming! For 14 time series and 100-200 variables for each time series it requires total 22 minutes (!) on Intel Core i5 4 GB RAM. Below is the example of backward stepwise regression:
+Stepwise regression demonstrated results which were on average 1-2% better then regular linear model. But the problem (and this is really big problem) is that it really time consuming! For 14 time series and 90-120 variables for each time series it requires total 22 minutes (!) on Intel Core i5 4 GB RAM to solve the model. Below is the example of backward stepwise regression:
 ```r
 fit_lm <- lm(y_train~.,X_train,weights = weights_lm)
 fit_lm_clean<-step(fit_lm,direction="backward",test="F",trace=F,weights = weights_lm)
@@ -172,6 +174,23 @@ y_test_pred<-predict(fit_xgboost,X_test)
 
 > Advise - take care of proper validation. Precise model can be overfitted even If it was developed and tested on different populations (that's why I do not like Kaggle much:)). You need to have at least 5 out-of-time (OOT) samples from different periods. Of course, for each iteration you need to take OOT sample as of most recent period and develop a model based on previous period. ![sampling](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/sampling.jpg "Sampling example")
 
+#### 5. kNN
+
+k-Nearest Neighbors is simple but relible algorithm. Unfortunatelly it didn't show any positive results during this research. However it can be used as input for other algorithms. Or we can calculate weights based on nearest months to the forecasting period usung kNN.
+
+```R
+library(FNN)
+knn_perf<-NULL
+for (k_i in 1:40) {
+  y_test_pred<-knn.reg(X_train,X_test,y_train,k=k_i)[[4]]
+  knn_perf_i<-data.table(k=k_i,mse=mse(y_test_pred,y_test))
+  knn_perf<-rbind(knn_perf,knn_perf_i)
+}
+k_final<-which.min( knn_perf$mse ) 
+y_train_pred<-knn.reg(X_train,X_train,y_train,k=k_final)[[4]]
+y_test_pred<-knn.reg(X_train,X_test,y_train,k=k_final)[[4]]
+```
+
 
 
 ### Final results
@@ -185,4 +204,9 @@ Box plot by buckets (y - algorythm, x - accuracy)
 
 As a result of testing, weighted penalized regression was chosen as base algorithm with `α=0` (ridge regression)  and `λ=0.005`. Observation period was set as 2 years. 
 
-The proposed algorithm allows to build time series forecasting based on interdependent time series. It automatically reveals any kind of seasonality, deals with missing values/outliers and removes overfitting/multicollinearity via penalization. It’s scalable for new features (both lagged and calendar), period of forecasting and number of interdependent time series.
+The proposed algorithm allows to build time series forecasting of multiple interdependent time series. It automatically reveals any kind of seasonality, deals with missing values/outliers and removes overfitting/multicollinearity via penalization. It’s scalable for new features (both lagged and calendar), period of forecasting and number of interdependent time series.
+
+What can be tested further? 
+* weights assigned based on nearest month via kNN algorythm
+* RNN/LSTM
+* seasonality and trend decomposition via 'TBADT' package
