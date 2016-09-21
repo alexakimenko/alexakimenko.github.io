@@ -19,6 +19,7 @@ Each time series has its unique trend, seasonality and variance. As you can see 
 The task is to develop an algorithm which will predict Y for the next month for each time series with Mean Absolute Percentage Error (MAPE) < 3%.
 
 
+
 ### Data preparation and new features
 
 First of all you need to normalize data and remove outliers. 
@@ -55,6 +56,7 @@ X_lagged_create<-function(bucket_name,actual_date,Y){
 > Advise - do not hesitate to use hundreds or even thousand of features. If you are afraid that your algorithm will slow down - use `data.table` package. On the example above you can see `dcast` function from `data.table` package instead and `cast` from `reshape`. This reduced time spent on this operation 4 times - from 4 seconds to 1 second.
 
 
+
 ### Forecasting algorithm
 
 First my thought was not to overcomplicate the task and to decompose time series by trend and seasonality. There is a great `forecast` package, developed by Rob Hyndman, which can do it for you. `TBATS` is the one algorithm from this package which can decompose dual seasonality. But the problem is that you need to somehow approach missing values without loosing accuracy and include lagged correlated time series as regressors. That’s why I transformed the task to regression task, which is well known and was solved million of times.
@@ -73,6 +75,7 @@ Whole forecasting algorithm is presented below:
 
 
 The algorithm starts with data preparation, then feature engineering and modeling. The last part is forecasting itself. In order to build a forecast, each new period of forecasting must have previous forecasting results as input, that why additional inner loop by number of periods ahead was added to forecasting algorithm. 
+
 
 
 ### Modeling
@@ -142,7 +145,7 @@ y_train_pred<-predict(fit_glmnet,get_matrix(X_train),s=0.005)
 y_test_pred<-predict(fit_glmnet,get_matrix(X_test),s=0.005)
 ```
 
-### 4. Trees
+#### 4. Trees
 
 I like building tree models, it can be simple c4.5, CART, more advanced Random Forest or even Gradient Boosted Models (GBM) and XGBoost. Truth be told, boosted trees are my favorite models, which I try to put in every task. However you need to be very mindful and accurate while building tree. Tree algorithms do not provide any statistical significance measures and can be easily overfitted. Sometimes even if you do shallow trees with 2-4 layers, define minimum number of observations  in nodes, optimize learning rate and number of variables via cross validation, the trees just do not work. Below is the example of XGBoost code with cross validation of deepness:
 
@@ -173,7 +176,10 @@ y_test_pred<-predict(fit_xgboost,X_test)
 Totally was created around 2k models, which wont’t fit to any chart unless you clusterize them:), so only main algorithms were presented below
 Box plot by buckets (y - algorythm, x - accuracy)
 
+
+
 ### Summary 
 
 As a result of testing, weighted penalized regression was chosen as base algorithm with `α=0` (ridge regression)  and `λ=0.005`. Observation period was set as 2 years. 
+
 The proposed algorithm allows to build time series forecasting based on interdependent time series. It automatically reveals any kind of seasonality, deals with missing values/outliers and removes overfitting/multicollinearity via penalization. It’s scalable for new features (both lagged and calendar), period of forecasting and number of interdependent time series.
