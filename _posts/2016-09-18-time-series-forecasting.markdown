@@ -99,7 +99,7 @@ mse<-function(y_pred,y_test){
 }
 ```
 
-> Advise - work on your coding skills. Your code needs to be readable, maintainable, testable and elegant. Copy-pasting is prohibited, functions and clear naming are encouraged. Save results of every experiment even if it fails. This [lecture](https://www.youtube.com/watch?v=_Zqhs1IhGx4) is a good place to start 
+> **Work on your coding skills.** Your code needs to be readable, maintainable, testable and elegant. Copy-pasting is prohibited, functions and clear naming are encouraged. Save results of every experiment even if it fails. This [lecture](https://www.youtube.com/watch?v=_Zqhs1IhGx4) is a good place to start 
 
 #### Weights
 
