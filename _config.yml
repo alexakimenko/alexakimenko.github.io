@@ -4,7 +4,7 @@ email:       alexandr.akimenko@gmail.com
 author:      Alex Akimenko
 description: "First normalize then penalize"
 baseurl:     ""
-url:         ""
+url:         "https://alexakimenko.github.io/"
 date_format: "%b %-d, %Y"
 
 # Google services
