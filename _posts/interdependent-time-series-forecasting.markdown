@@ -3,7 +3,7 @@ layout:     post
 title:      Interdependent time series forecasting
 date:       2016-09-18 15:31:19
 summary:    How to approach forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
-categories: time_series
+categories: time-series
 ---
 
 
