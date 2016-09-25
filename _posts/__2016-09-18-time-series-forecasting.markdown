@@ -24,6 +24,30 @@ The task is to develop an algorithm which will predict `Y` for the next month fo
 
 
 
+### Forecasting algorithm
+
+
+First my thought was not to overcomplicate the task and to decompose time series by trend and seasonality. There is a great `forecast` package, developed by Rob Hyndman, which can do it for you. `TBATS` is the one algorithm from this package which can decompose dual seasonality. But the problem is that you need to somehow approach missing values without loosing accuracy and include lagged correlated time series as regressors. That’s why I transformed the task to regression task, which is well known and was solved million of times.
+
+Following algorithms were chosen as challengers:
+
+0.Dimension reduction (Principal Component Analysis - PCA). 
+
+1.Ensembles (Random Forest, Gradient Boosted Models - GBM and XGBoost);
+
+2.Regressions (Linear, Stepwise, Ridge and Lasso);
+
+3.Distance based (k-Nearest Neighbor - kNN);
+
+
+Whole forecasting algorithm is presented below:
+
+![algorythm](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/algorithm%20(1).jpg "Algorythm")
+
+The algorithm starts with data preparation, then feature engineering and modeling. The last part is forecasting itself. In order to build a forecast, each new period of forecasting must have previous forecasting results as input, that why additional inner loop by number of periods ahead was added to forecasting algorithm. 
+
+
+
 ### Data preparation and new features
 
 
@@ -59,30 +83,6 @@ X_lagged_create<-function(bucket_name,actual_date,Y){
 }
 ```
 > **Do not hesitate to use hundreds or even thousand of features.** If you are afraid that your algorithm will slow down - use `data.table` package. On the example above you can see `dcast` function from `data.table` package instead and `cast` from `reshape`. This reduced time spent on this operation 4 times - from 4 seconds to 1 second.
-
-
-
-### Forecasting algorithm
-
-
-First my thought was not to overcomplicate the task and to decompose time series by trend and seasonality. There is a great `forecast` package, developed by Rob Hyndman, which can do it for you. `TBATS` is the one algorithm from this package which can decompose dual seasonality. But the problem is that you need to somehow approach missing values without loosing accuracy and include lagged correlated time series as regressors. That’s why I transformed the task to regression task, which is well known and was solved million of times.
-
-Following algorithms were chosen as challengers:
-
-0.Dimension reduction (Principal Component Analysis - PCA). 
-
-1.Ensembles (Random Forest, Gradient Boosted Models - GBM and XGBoost);
-
-2.Regressions (Linear, Stepwise, Ridge and Lasso);
-
-3.Distance based (k-Nearest Neighbor - kNN);
-
-
-Whole forecasting algorithm is presented below:
-
-![algorythm](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/algorithm%20(1).jpg "Algorythm")
-
-The algorithm starts with data preparation, then feature engineering and modeling. The last part is forecasting itself. In order to build a forecast, each new period of forecasting must have previous forecasting results as input, that why additional inner loop by number of periods ahead was added to forecasting algorithm. 
 
 
 
