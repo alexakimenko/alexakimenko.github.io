@@ -7,6 +7,9 @@ categories: time_series
 ---
 
 
+Truth be told I'm more a business user then mathematician or programmer. Thus the proposed algorythm is more "I see like this" practice then mathematically and statistically stuffed theory. Hovewer this algorytm can be a good example of adaptive auto-regression model.
+
+
 ### First glance on the data
 
 
@@ -25,6 +28,19 @@ The task is to develop an algorithm which will predict `Y` for the next month fo
 
 
 ### Forecasting algorithm
+
+
+Some reseaches assume that there are around 100 forecasting model types. Probably this number is overestimated, however we must admit that 
+the number of model types is high and below is presented only main one:
+
+* Auto-regression models and moving average (ARMA, ARIMA, GARCH, etc.) 
+* SSA/Gusenitca
+* Neural networks (RNN)
+* Adaptive short term forecasting:
+  * Exponential smoothing; 
+  * Seasonal and trend decomposition;
+  * Adaptive auto-regression;
+* Adaptive model selection & composition.
 
 
 First my thought was not to overcomplicate the task and to decompose time series by trend and seasonality. There is a great `forecast` package, developed by Rob Hyndman, which can do it for you. `TBATS` is the one algorithm from this package which can decompose dual seasonality. But the problem is that you need to somehow approach missing values without loosing accuracy and include lagged correlated time series as regressors. That’s why I transformed the task to regression task, which is well known and was solved million of times.
@@ -158,7 +174,7 @@ y_test_pred<-predict(fit_glmnet,get_matrix(X_test),s=0.005)
 
 #### 4. Trees
 
-I like building tree models, it can be simple c4.5, CART, more advanced Random Forest or even Gradient Boosted Models (GBM) and XGBoost. Truth be told, boosted trees are my favorite models, which I try to put in every task. However you need to be very mindful and accurate while building tree. Tree algorithms do not provide any statistical significance measures and can be easily overfitted. Sometimes even if you do shallow trees with 2-4 layers, define minimum number of observations  in nodes, optimize learning rate and number of variables via cross validation, the trees just do not work. Below is the example of XGBoost code with cross validation of deepness:
+I like building tree models, it can be simple c4.5, CART, more advanced Random Forest or even Gradient Boosted Models (GBM) and XGBoost. And boosted trees are my favorite models, which I try to put in every task. However you need to be very mindful and accurate while building tree. Tree algorithms do not provide any statistical significance measures and can be easily overfitted. Sometimes even if you do shallow trees with 2-4 layers, define minimum number of observations  in nodes, optimize learning rate and number of variables via cross validation, the trees just do not work. Below is the example of XGBoost code with cross validation of deepness:
 
 ```R
 library(xgboost)
