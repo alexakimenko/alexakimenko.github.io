@@ -60,7 +60,7 @@ Whole forecasting algorithm is presented below:
 
 ![algorythm](https://raw.githubusercontent.com/alexakimenko/treemap/master/Forecasting_daily/algorithm%20(1).jpg "Algorythm")
 
-The algorithm starts with data preparation, then feature engineering and modeling. The last part is forecasting itself. In order to build a forecast, each new period of forecasting must have previous forecasting results as input, that why additional inner loop by number of periods ahead was added to forecasting algorithm. 
+The algorithm starts with data preparation, then feature engineering and modeling. The last part is forecasting itself. In order to build a forecast, each new period of forecasting must have previous forecasting results as input, that's why additional inner loop by number of periods ahead was added to forecasting algorithm. 
 
 
 
