@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      Time series forecasting
+title:      Short term adaptive forecasting
 date:       2016-09-18 15:31:19
-summary:    How to approach forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
+summary:    How to approach short term forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
 categories: time_series
 ---
 
