@@ -7,7 +7,7 @@ categories: time_series
 ---
 
 
-Truth be told I'm more a business user then mathematician or programmer. Thus the proposed algorythm is more "I see like this" practice then mathematically and statistically stuffed theory. Hovewer this algorytm can be a good example of adaptive auto-regression model.
+Truth be told, I'm more a business user then mathematician or programmer. Thus the proposed algorythm is more "I see like this" practice then mathematically and statistically stuffed theory. Hovewer this algorytm can be a usefull example of a mix of popular machine learning techniques into adaptive auto-regression forecasting model.
 
 
 ### First glance on the data
