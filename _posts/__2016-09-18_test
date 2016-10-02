@@ -1,0 +1,13 @@
+---
+layout:     post
+title:      Time series forecasting
+date:       2016-09-18 15:31:19
+summary:    How to approach forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
+categories: time_series, research
+---
+
+<iframe src="https://plot.ly/~RPlotBot/501.embed"
+        height="600" width="100%"
+        scrolling="no" seamless="seamless"
+        frameBorder="0">
+</iframe>
