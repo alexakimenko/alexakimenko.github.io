@@ -17,3 +17,25 @@ If we are talkning about startups under "innovations" we assume high tech advanc
 In order to visualize this idea I have a scatterplot, whex `X` is for "innovations", `Y` - product. (Gartner have similar idea, however the chart below is more suitable for startups). The coordinates are pretty subjective. While developing this scatterplot I tried to stick to following rules: if you have a breakthrough in machine learning technologies, you will be in righ part of the plot. If you have large customers base, high NPS or "network effect", you will be on top of the chart.
 
 ![startups](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/startups.png)
+
+Let's start with Prisma. It's an app which turns your photos into artworks. The app has an algorythm wich was developed a year ago, so almost no innovations. However it's "network effect" was large. 
+
+On the other side is "Google DeepMind", which is the only expencive startup without product.
+Some more exmples:
+
+Turi - specialized in providing tools and frameworks for other developers to incorporate machine learning and artificial intelligence into their apps;
+
+Preact - cloud-based, automatic customer success service that helps subscription software companies maximize customer lifetime value by reducing churn, acquiring new customers, and driving upsells;
+
+Nervana - when artificial intelligence dwarf the move to cloud computing;
+
+uBiome - data science from Bacteria;
+
+Stream - is a new kind of data store designed for building, scaling and personalizing feeds;
+
+Yummly - personal platform for taste that answers “What’s for dinner?”;
+
+Granify	- knows which shoppers aren't going to buy and changes their minds.
+
+
+#### People
