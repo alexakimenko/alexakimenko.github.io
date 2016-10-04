@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      Time series forecasting
-date:       2016-09-18 15:31:19
-summary:    How to approach forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
+title:      Magic quadrant for startups & people
+date:       2016-09-14 15:31:19
+summary:    
 categories: time_series, research
 ---
 
