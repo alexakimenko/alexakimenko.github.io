@@ -39,3 +39,7 @@ Granify	- knows which shoppers aren't going to buy and changes their minds.
 
 
 #### People
+
+
+
+![people](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/people.png)
