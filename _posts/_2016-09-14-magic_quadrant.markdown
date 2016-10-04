@@ -12,7 +12,7 @@ Main idea was that there are 2 factors of success: you need to have innovations 
 
 #### Startups
 
-If we are talkning about startups under "innovations" we assume high tech advanced tools, under "product" - a tool, which can provide benefit for customers.
+If we are talkning about startups, under "innovations" we assume high tech advanced tools, under "product" - a tool, which can provide benefit for customers.
 
 In order to visualize this idea I have a scatterplot, whex `X` is for "innovations", `Y` - product. (Gartner have similar idea, however the chart below is more suitable for startups). The coordinates are pretty subjective. While developing this scatterplot I tried to stick to following rules: if you have a breakthrough in machine learning technologies, you will be in righ part of the plot. If you have large customers base, high NPS or "network effect", you will be on top of the chart.
 
@@ -41,5 +41,12 @@ Granify	- knows which shoppers aren't going to buy and changes their minds.
 #### People
 
 
+Startups are done by people, so the position of a startup on the scatterplot above is defined by people.
+Separate people are vectors on Innovations-Product scatterplot. And if people unite in order to build startup, they sum their vectors.
+
+If we are talkning about people, under "innovations" we assume breakthrough researches and desisions. And "product" is the ability to administrate, integrate and deliver results. 
 
 ![people](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/people.png)
+
+Here is the canonical example of two Steves - Wozniak and Jobs. Here you see two multidirectional vectors united by common idea.
+
