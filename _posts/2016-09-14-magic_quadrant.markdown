@@ -10,7 +10,7 @@ I was on Data Fest at Yandex on 10-11 of September and we discussed machine lear
 Main idea was that there are 2 factors of success: you need to have innovations and product. The post below is just to analyse and summarise these two factors of success.
 
 
-#### Startups
+### Startups
 
 If we are talking about startups, under "innovations" we assume high tech advanced tools, under "product" - a tool, which can provide benefit for customers.
 
@@ -39,7 +39,7 @@ Some more exmples:
 **Granify**	- knows which shoppers aren't going to buy and changes their minds.
 
 
-#### People
+### People
 
 
 Startups are done by people and the position of a startup on the scatterplot above is defined by people.
@@ -52,6 +52,6 @@ Below is the canonical example of two Steves - Wozniak and Jobs. Here you see tw
 ![people](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/people.png)
 
 
-#### Summary
+### Summary
 
 To sum it up, you need to concentrate on your vector and try to extend it further. Herewith you need to find someone who can complement your vector and  pull your startup. Unless you were born Elon Musk, of course.
