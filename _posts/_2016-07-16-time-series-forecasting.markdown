@@ -7,8 +7,8 @@ categories:
 ---
 
 
-If you do analytics in R there two most convinient ways to share the results of your researh and collaboRate: R-Markdown and Shiny.
-R-Markdown is perfect for 1-way interaction, while Shiny is 2-way. In the post below I wll desribe main steps you need to complete in order to run you service on the example of my [forecasting service](http://alexakimenko.shinyapps.io/GetForecast)
+If you do analytics in R there two most convenient ways to share the results of your research and collaboRate: R-Markdown and Shiny.
+R-Markdown is perfect for 1-way interaction, while Shiny is 2-way. In the post below I will describe main steps you need to complete to run you service based on the example of my [forecasting service](http://alexakimenko.shinyapps.io/GetForecast)
 ![GetForecast](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/GetForecast2.png)
 
 ### Develop your app
@@ -20,14 +20,14 @@ install.packages("shiny")
 library(shiny)
 ```
 
-You can have a bunch of options how to build UI, however I prefer `shinydashboard`. You can develop really beautifull reports, something like this [one](https://gallery.shinyapps.io/087-crandash/). So you need to activate `shinydashboard` by running:
+You can have a bunch of options how to build UI, however I prefer `shinydashboard`. You can develop really beautiful reports, something like this [one](https://gallery.shinyapps.io/087-crandash/). So you need to activate `shinydashboard` by running:
 
 ```R
 install.packages("shinydashboard")
 library(shinydashboard)
 ```
 
-Next you need to fill `dashboardHeader`, `dashboardSidebar` and `dashboardBody`. In `dashboardBody` we will have input elements to communicate with the user - `dateRangeInput` (range of the dates from a file with actuals), `numericInput` (Number of periods ahead to forecast) and `fileInput` (actual). We also have `checkboxInput`  just to specify forecasting model type. Each input element has at least 3 parts: variable name (it will be used in `server.R` part), help text and default value. Below you can see the full sript of `ui.R` part
+Next you need to fill `dashboardHeader`, `dashboardSidebar` and `dashboardBody`. In `dashboardBody` we will have input elements to communicate with the user - `dateRangeInput` (range of the dates from a file with actuals), `numericInput` (Number of periods ahead to forecast) and `fileInput` (actual). We also have `checkboxInput`  just to specify forecasting model type. Each input element has at least 3 parts: variable name (it will be used in `server.R` part), help text and default value. Below you can see the full script of `ui.R` part
 
 ```R
 dashboardPage(skin = "blue",
@@ -69,7 +69,7 @@ All your calculations in `server.R` part should be inside `shinyServer` function
 shinyServer(function(input, output) {
 })
 ```
-Hovewer before developing `server.R` you need to understand a concept of `reactivity`. You can think of it as of Excel table, where if you change value in one sell other linked cell will be changed automatically. And unfortunatelly you need to explicitely tell Shiny to if you want your functions to be reactive. You can do it with `reactive` or `render` functions. Here is the example:
+However before developing `server.R` you need to understand a concept of `reactivity`. You can think of it as of Excel table, where if you change value in one sell other linked cell will be changed automatically. And unfortunately you need to explicitly tell Shiny to if you want your functions to be reactive. You can do it with `reactive` or `render` functions. Here is the example:
 
 ```R
 output$contents <- renderTable({
@@ -89,4 +89,8 @@ Thus the function above takes `input$n.ahead` as input from `ui.R`, result of re
 
 
 ### Deploy your app
+
+If you are a beginner, most convenient way is to run your apps on [shinyapps.io](http://www.shinyapps.io/). I won't describe all the process of deployment, while it available on [Shiny page](http://shiny.rstudio.com/articles/shinyapps.html). If you deploy the app for the first time you need to create shinyapps.io account and to link it with your R-Studio with `rsconnect` package and be ready for errors:) Most common error is that one of the dependency is missing in your app. It can be uninstalled package or data, which was not stored in Shiny app folder on your PC. So not to overcomplicate the task I suggest to start with the deployment of a simple example available in the tutorial on [Shiny page](http://shiny.rstudio.com/articles/shinyapps.html)
+
+
 
