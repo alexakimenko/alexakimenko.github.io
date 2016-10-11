@@ -88,6 +88,8 @@ output$contents <- renderTable({
 Thus the function above takes `input$n.ahead` as input from `ui.R`, result of reactive `data()` function, calculates `ts` and returns `data.frame(ts)`, which we output in `ui.R` with `tableOutput('contents')` function.
 
 
+
+
 ### Deploy your app
 
 If you are a beginner, most convenient way is to run your apps on [shinyapps.io](http://www.shinyapps.io/). I won't describe all the process of deployment, while it available on [Shiny page](http://shiny.rstudio.com/articles/shinyapps.html). If you deploy the app for the first time you need to create shinyapps.io account and to link it with your R-Studio with `rsconnect` package and be ready for errors:) Most common error is that one of the dependency is missing in your app. It can be uninstalled package or data, which was not stored in Shiny app folder on your PC. So not to overcomplicate the task I suggest to start with the deployment of a simple example available in the tutorial on [Shiny page](http://shiny.rstudio.com/articles/shinyapps.html)
