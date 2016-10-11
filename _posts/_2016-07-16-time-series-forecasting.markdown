@@ -9,6 +9,7 @@ categories:
 
 If you do analytics in R there two most convinient ways to share the results of your researh and collaboRate: R-Markdown and Shiny.
 R-Markdown is perfect for 1-way interaction, while Shiny is 2-way. In the post below I wll desribe main steps you need to complete in order to run you service on the example of my [forecasting service](http://alexakimenko.shinyapps.io/GetForecast)
+![GetForecast](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/GetForecast.png)
 
 ### Develop your app
 
