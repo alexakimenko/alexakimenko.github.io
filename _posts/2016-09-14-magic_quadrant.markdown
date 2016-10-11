@@ -14,7 +14,7 @@ Main idea was that there are 2 factors of success: you need to have innovations 
 
 If we are talking about startups, under "innovations" we assume high tech advanced tools, under "product" - a tool, which can provide benefit for customers.
 
-In order to visualise this idea I draw a scatterplot, when `X` is for "innovations", `Y` - product. (I don't mind telling, Gartner have similar idea, however the chart below is just more suitable for startups). The coordinates are pretty subjective. While developing this scatterplot I tried to stick to following rules: if you have a breakthrough machine learning technology, you will be in righ part of the plot. If you have large customers base, high NPS or "network effect", you will be on the top of the chart.
+In order to visualise this idea I draw a scatterplot, when `X` is for "innovations", `Y` - product, size of the icon is for value of the startup. (I don't mind telling, Gartner have similar idea, however the chart below is just more suitable for startups). The coordinates are pretty subjective. While developing this scatterplot I tried to stick to following rules: if you have a breakthrough machine learning technology, you will be in righ part of the plot. If you have large customers base, high NPS or "network effect", you will be on the top of the chart.
 
 ![startups](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/startups.png)
 
