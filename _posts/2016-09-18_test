@@ -3,8 +3,10 @@ layout:     post
 title:      Time series forecasting
 date:       2016-09-18 15:31:19
 summary:    How to approach forecasting of multiple interdependent time series and reduce forecasting error twice [spoiler]
-categories: time_series, research
+categories: 
 ---
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
