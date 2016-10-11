@@ -69,7 +69,7 @@ All your calculations in `server.R` part should be inside `shinyServer` function
 shinyServer(function(input, output) {
 })
 ```
-Hovewer before developing `server.R` you need to understand a concept of `reactivity`. You can think of it as of Excel table, where if you change value in one sell other linked cell will be changed automatically. And unfortunatelly you need to explicitely tell Shiny to reactivate functions. You can do iy with `reactive` function or `render` function. Here is the example:
+Hovewer before developing `server.R` you need to understand a concept of `reactivity`. You can think of it as of Excel table, where if you change value in one sell other linked cell will be changed automatically. And unfortunatelly you need to explicitely tell Shiny to if you want your functions to be reactive. You can do it with `reactive` or `render` functions. Here is the example:
 
 ```R
 output$contents <- renderTable({
@@ -89,3 +89,4 @@ Thus the function above takes `input$n.ahead` as input from `ui.R`, result of re
 
 
 ### Deploy your app
+
