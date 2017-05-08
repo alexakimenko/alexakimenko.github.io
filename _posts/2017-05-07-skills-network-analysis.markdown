@@ -111,11 +111,6 @@ V(skills_graph)$group <- fit_cluster$membership
 Также есть пару навыков, которые логически не вписываются в специализацию. Так, например, знание языка Swift и разработка мобильных приложений на iOS попали в кластер «Передача данных». Объясняется это просто: шум в данных из-за субъективного понимания значения отдельных навыков и нехватка размеченных данных.
 
 
-<div id="htmlwidget_container">
-  <div id="htmlwidget-fd9380bdcec20d98c374" style="width:960px;height:500px;" class="visNetwork html-widget html-widget-static-bound"><select class="dropdown" id="nodeSelecthtmlwidget-fd9380bdcec20d98c374" style="display: none;"></select><hr style="height:0px; visibility:hidden; margin-bottom:-1px;"><select class="dropdown" id="selectedByhtmlwidget-fd9380bdcec20d98c374" style="display: none;"></select><div id="maindivhtmlwidget-fd9380bdcec20d98c374" style="height:95%"><div id="graphhtmlwidget-fd9380bdcec20d98c374" style="float:right; width:100%;height:100%"><div class="vis-network" tabindex="900" style="position: relative; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;"><canvas width="960" height="475" style="position: relative; touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;"></canvas><div class="vis-network-tooltip" style="left: 5px; top: 151px; visibility: hidden;"><p>Навык:наличие водительских прав<br>Кластер:Обслуживание серверов и сетей<br>Количество соседей:3</p></div></div><div style="position: fixed; visibility: hidden; padding: 5px; white-space: nowrap; font-family: verdana; font-size: 14px; background-color: rgb(245, 244, 237); border-radius: 3px; border: 1px solid rgb(128, 128, 116); box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 10px; top: 239px; left: 702px;"><p>Навык:наличие водительских прав<br>Кластер:Обслуживание серверов и сетей<br>Количество соседей:3</p></div></div></div></div>
-</div>
-
-
 
 
 <div id="disqus_thread"></div>
