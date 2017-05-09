@@ -122,7 +122,7 @@ V(skills_graph)$group <- fit_cluster$membership
 
 ![skills_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.003.jpeg "skills cluster")
 
-Как мы видим, удалось выявить 8 специализаций:
+Как мы видим, удалось выявить 8 специализаций (названия даны субъективно автором статьи):
 
 * **Обслуживание серверов и сетей** - включает знание Microsoft Hyper-V, VMware vSphere, ремонт и отстройка техники. Требуется также знание английского языка;
 * **Разработчик промышленных систем/контроллеров** - тут целый набор от C/C++ до Java включая Assembler и SCADA;
