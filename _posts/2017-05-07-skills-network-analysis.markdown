@@ -99,13 +99,13 @@ get.adjlist(skills_graph)
 
 | |Algorithm|Modularity|Number of communities|
 |---|---|---|---|
-|1|Betweenness|0.222602015841937|6|
-|2|Fastgreedy|0.314218805624777|8
-|3|Multilevel|0.330705989676041|8|
-|4|LabelPropogation|0.257412001601994|15|
-|5|Walktrap|0.316126735493058|10|
-|6|Infomap|0.315236739053044|13|
-|7|Eigenvector|0.347699359202563|8|
+|1|Betweenness|0.223|6|
+|2|Fastgreedy|0.314|8
+|3|Multilevel|0.331|8|
+|4|LabelPropogation|0.257|15|
+|5|Walktrap|0.316|10|
+|6|Infomap|0.315|13|
+|7|Eigenvector|0.348|8|
 
 В пакте `igraph` этот алгоритм реализуется функцией `cluster_louvain()`:
 
