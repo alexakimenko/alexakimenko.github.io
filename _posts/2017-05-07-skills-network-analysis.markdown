@@ -120,7 +120,7 @@ V(skills_graph)$group <- fit_cluster$membership
 ### Результаты
 
 
-![skills_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.003.png "skills cluster")
+![skills_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.003.jpeg "skills cluster")
 
 Как мы видим, удалось выявить 8 специализаций:
 
