@@ -64,7 +64,7 @@ skills_graph<-graph_from_adjacency_matrix(grid_cast_norm, mode = "undirected",we
 plot(skills_graph, vertex.size=5)
 ```
 
-![skills_no_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills_no_cluster.png "skills no cluster")
+![skills_no_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.001.png "skills no cluster")
 
 `igraph` нам также позволяет посчитать основы статистики по вершинам:
 
@@ -104,7 +104,7 @@ V(skills_graph)$group <- fit_cluster$membership
 ### Результаты
 
 
-![skills_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills_cluster.png "skills cluster")
+![skills_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.002.png "skills cluster")
 
 Как мы видим, удалось выявить 11 специализаций. Все специализации (за исключением выбросов) тесно взаимосвязаны. Это объясняется нашим основным предположением, что одна вакансия может иметь несколько специализаций. 
 
