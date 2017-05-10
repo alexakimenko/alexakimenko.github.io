@@ -13,3 +13,5 @@ On the right table you can see the example of one of the time series. Rows are d
 Each time series has its unique trend, seasonality and variance. As you can see on the chart below, the variance can be really high
 (show B1 normalized)
 The task is to develop an algorithm which will predict Y for the next month for each time series with Mean Absolute Percentage Error (MAPE) < 3%.
+
+{% include test.html %}
