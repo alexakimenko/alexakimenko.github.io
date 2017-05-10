@@ -1,8 +1,9 @@
 ---
-title: "test2"
-author: "Alex Akimenko"
-date: "10 05 2017"
-output: html_document
+layout:     post
+title:      test 2
+date:       2017-05-07 15:31:19
+summary:    test.
+categories: research
 ---
 
 html_fragment
