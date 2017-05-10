@@ -51,7 +51,7 @@ for (i in c(1:nrow(grid))){
 ```r
 grid_clean<-grid[grid$value>1,] # пары навыков встречающиеся <=1 раза исключаются
 grid_cast<-dcast(grid_clean,skill_1~skill_2)
-grid_cast[,1]<-NULL
+grid_cast[,skill_1:=NULL]
 grid_cast_norm<-grid_cast/colSums(grid_cast,na.rm=T)
 grid_cast_norm[is.na(grid_cast_norm)]<-0
 grid_cast_norm<-as.matrix(grid_cast_norm) 
