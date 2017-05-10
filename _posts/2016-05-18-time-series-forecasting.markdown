@@ -14,4 +14,4 @@ Each time series has its unique trend, seasonality and variance. As you can see 
 (show B1 normalized)
 The task is to develop an algorithm which will predict Y for the next month for each time series with Mean Absolute Percentage Error (MAPE) < 3%.
 
-{% include knitr_example.html %}
+{% include test.html %}
