@@ -66,8 +66,11 @@ grid_cast_norm[grid_cast_norm<=0.02] <-0 # пары навыков встреч�
 
 ```r
 library(igraph)
+library(RColorBrewer)
 skills_graph<-graph_from_adjacency_matrix(grid_cast_norm, mode = "undirected",weighted=T)
-plot(skills_graph, vertex.size=5)
+E(skills_graph)$width <- E(skills_graph)$weight
+plot(skills_graph, vertex.size=7,vertex.label.cex=0.8, layout=layout.auto, 
+     vertex.label.color="black",vertex.color=brewer.pal(max(V(skills_graph)$group),"Set3")[1])
 ```
 
 ![skills_no_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.001.png "skills no cluster")
