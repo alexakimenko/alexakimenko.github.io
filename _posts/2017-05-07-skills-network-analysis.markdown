@@ -73,7 +73,7 @@ plot(skills_graph, vertex.size=7,vertex.label.cex=0.8, layout=layout.auto,
      vertex.label.color="black",vertex.color=brewer.pal(max(V(skills_graph)$group),"Set3")[1])
 ```
 
-![skills_no_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.001.png "skills no cluster")
+![skills_no_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.004.png "skills no cluster")
 
 `igraph` нам также позволяет посчитать основные статистики по вершинам:
 
@@ -125,7 +125,7 @@ V(skills_graph)$group <- fit_cluster$membership
 ### Результаты
 
 
-![skills_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.003.jpeg "skills cluster")
+![skills_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.005.png "skills cluster")
 
 Как мы видим, удалось выявить 8 специализаций (названия даны субъективно автором статьи):
 
