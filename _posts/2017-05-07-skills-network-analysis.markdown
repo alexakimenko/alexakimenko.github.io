@@ -72,7 +72,7 @@ plot(skills_graph, vertex.size=5)
 
 ![skills_no_cluster](https://raw.githubusercontent.com/alexakimenko/alexakimenko.github.io/master/images/skills.001.png "skills no cluster")
 
-`igraph` нам также позволяет посчитать основы статистики по вершинам:
+`igraph` нам также позволяет посчитать основные статистики по вершинам:
 
 ```r
 closeness(skills_graph) # Центральность вершины на основании расстояния до других вершин
